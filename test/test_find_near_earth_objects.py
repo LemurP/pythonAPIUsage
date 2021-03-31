@@ -1,7 +1,6 @@
 import pytest
 
-import findNearEarthObjects
-from findNearEarthObjects import getFromAPI, jsonify
+from src.find_near_earth_objects import getFromAPI, jsonify, identify_nearest_dangerous_object
 
 
 @pytest.mark.calls_real_api
@@ -19,7 +18,7 @@ def test_nearest_object_with_dangerous_tag_is_identified():
         'https://api.nasa.gov/neo/rest/v1/feed?start_date=2021-01-02&end_date=2021-01-02&api_key=DEMO_KEY'))
     result = near_earth_objects
 
-    nearest_dangerous_object = findNearEarthObjects.identify_nearest_dangerous_object(result)
+    nearest_dangerous_object = identify_nearest_dangerous_object(result)
     assert nearest_dangerous_object['id'] == '54095182'
 
 

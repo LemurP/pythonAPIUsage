@@ -9,5 +9,5 @@ json_representation = json_decoder.decode(response_content)
 fileURL = json_representation['hdurl']
 r2 = requests.get(fileURL)
 
-with open("test-nasa.jpeg", "wb") as file:
+with open("../test-nasa.jpeg", "wb") as file:
     file.write(r2.content)
