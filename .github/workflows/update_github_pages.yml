@@ -29,9 +29,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Update github pages page with content
-        # You may pin to the exact commit or the version.
-        # uses: nkoppel/push-files-to-another-repository@0be7eeca3d4f544122c5cb268d41a79ababa8efa
-        uses: nkoppel/push-files-to-another-repository@v1.0.1
+        uses: lemurp/push-files-to-another-repository@v1.0.2
         with:
           # Files to be pushed to the destination repository. Accepts multiple filenames and globbing.
           source-files: index.html
