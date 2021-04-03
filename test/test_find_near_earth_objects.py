@@ -6,6 +6,8 @@ from src.find_near_earth_objects import get_from_api, jsonify, identify_nearest_
 
 @pytest.mark.calls_real_api
 def test_known_result_from_neo_api_call():
+    # If this fails, something has changed with the API (unlikely) or the representation has changed since the last
+    # time the response was saved
     near_earth_objects = jsonify(get_from_api(
         'https://api.nasa.gov/neo/rest/v1/feed?start_date=2021-01-01&end_date=2021-01-01&api_key=DEMO_KEY'))
     with open("test/test_neo_call_response.json", "r") as file:
