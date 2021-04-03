@@ -9,13 +9,15 @@ from src.models.near_earth_object import FeedAPIObject, NearEarthObject
 def main():
     near_earth_objects: FeedAPIObject = get_near_earth_objects_for_url()
     nearest = identify_nearest_dangerous_object(near_earth_objects)
-    print("The closest dangerous approach this week is: {}".format(nearest.id))
-    print("It has a diameter of {} meters".format(nearest.estimated_diameter.meters))
-    print("It will fly past")
+    text = "The closest dangerous approach this week is: {}\nIt has a diameter of {} meters\nIt will fly past ".format(
+        nearest.id, nearest.estimated_diameter.meters)
 
     for close_approach in nearest.close_approaches:
-        print("at a distance of {} kilometers on {}".format(close_approach.miss_distance.kilometers,
-                                                            close_approach.close_approach_date_full))
+        text = text + "at a distance of {} kilometers on {}".format(close_approach.miss_distance.kilometers,
+                                                                    close_approach.close_approach_date_full)
+    print(text)
+    with open("index.html", "w") as file:
+        file.write(text)
 
 
 def get_near_earth_objects_for_url(url='https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY'):
