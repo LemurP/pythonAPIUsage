@@ -13,7 +13,7 @@ def main():
         nearest.id, nearest.estimated_diameter.meters)
 
     for close_approach in nearest.close_approaches:
-        text = text + "at a distance of {} kilometers on {}".format(close_approach.miss_distance.kilometers,
+        text = text + "at a distance of {:.2f} kilometers on {}".format(close_approach.miss_distance.kilometers,
                                                                     close_approach.close_approach_date_full)
     print(text)
     with open("index.html", "w") as file:
