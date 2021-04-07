@@ -47,7 +47,7 @@ class NearEarthObject:
 
 class EstimatedDiameter:
     def __init__(self, raw_json):
-        self.kilometers = raw_json['kilometers']
+        self.kilometers = ( raw_json['kilometers']['estimated_diameter_max'] - raw_json['kilometers']['estimated_diameter_min'] ) / 2
         self.meters = raw_json['meters']
         self.miles = raw_json['miles']
         self.feet = raw_json['feet']
