@@ -2,6 +2,7 @@ import json
 from typing import Optional
 
 import requests
+from datetime import datetime
 
 from src.models.near_earth_object import FeedAPIObject, NearEarthObject
 
@@ -9,8 +10,8 @@ from src.models.near_earth_object import FeedAPIObject, NearEarthObject
 def main():
     near_earth_objects: FeedAPIObject = get_near_earth_objects_for_url()
     nearest = identify_nearest_dangerous_object(near_earth_objects)
-    text = "The closest dangerous approach this week is: {}\nIt has a diameter of {} meters\nIt will fly past ".format(
-        nearest.id, nearest.estimated_diameter.meters)
+    text = "Updated {}. The closest dangerous approach this week is: {}\n\nIt has a diameter of {} meters\nIt will fly past ".format(
+        str(datetime.now()), nearest.id, nearest.estimated_diameter.meters)
 
     for close_approach in nearest.close_approaches:
         text = text + "at a distance of {:.2f} kilometers on {}".format(close_approach.miss_distance.kilometers,
